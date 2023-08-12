@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="https://avatars.githubusercontent.com/Cilions" />
+      <script async src="https://cdn.splitbee.io/sb.js"></script>
       <body>{children}</body>
     </html>
   )
