@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Consolas&display=swap');
 
 :root {
+  --main-gray-light: #808080;
+  --main-gray-dark: #555555;
   color-scheme: light dark;
 }
 
 body {
   font-family: "Consolas", monospace;
+  padding: 0;
   border: 0;
+}
+
+p {
+  margin: 0;
 }

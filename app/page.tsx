@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useChat } from 'ai/react'
 import styles from './page.module.css'
+import packageJson from '../package.json';
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat()
@@ -11,7 +12,7 @@ export default function Chat() {
     <div className={styles.container}>
       {messages.length > 0
         ? messages.map(m => (
-            <div key={m.id}>
+            <div className={styles.chat} key={m.id}>
               {m.role === 'user' ? 'You: ' : 'clgpt-ai: '}
               {m.content}
             </div>
@@ -22,13 +23,21 @@ export default function Chat() {
         <input
           className={styles.input}
           value={input}
-          placeholder="Say something..."
+          placeholder="Typing something..."
           onChange={handleInputChange}
         />
       </form>
-      <p className={styles.info}>
-        Author <Link href="https://cilions.icu">@cilions</Link> - clgpt-ai doesn&apos;t collect any data
-      </p>
+      <div style={{ marginTop: '1rem' }}>
+        <p className={styles.info}>
+          <Link href="https://platform.openai.com">OpenAi API</Link> - gpt-3.5-turbo
+        </p>
+        <p className={styles.info}>
+          contact: <Link href="mailto:cilions@pm.me">cilions@pm.me</Link> - <Link href="https://cilions.icu">@cilions</Link>
+        </p>
+        <p className={styles.info}>
+          v{packageJson.version}
+        </p>
+      </div>
     </div>
   )
 }
