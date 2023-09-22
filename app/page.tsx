@@ -23,8 +23,9 @@ export default function Chat() {
         <input
           className={styles.input}
           value={input}
-          placeholder="Typing something..."
+          placeholder="Temporarily unavailable"
           onChange={handleInputChange}
+          disabled
         />
       </form>
       <div style={{ marginTop: '1rem' }}>
