@@ -1,17 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Consolas&display=swap');
-
 :root {
-  --main-gray-light: #808080;
-  --main-gray-dark: #555555;
   color-scheme: light dark;
 }
 
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
 body {
-  font-family: "Consolas", monospace;
+  font-family: "Consolas";
   padding: 0;
   border: 0;
 }
 
 p {
   margin: 0;
+}
+
+input {
+  background-color: transparent;
+  margin-top: 1rem;
+  border: none;
+  width: 100%;
+  font-size: 0.875rem;
+  padding: 0;
 }

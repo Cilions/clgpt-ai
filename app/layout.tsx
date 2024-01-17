@@ -1,5 +1,5 @@
-import './globals.css'
 import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'clgpt-ai',
@@ -13,8 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="icon" href="https://avatars.githubusercontent.com/Cilions" />
-      <script async src="https://cdn.splitbee.io/sb.js"></script>
+      <link rel="icon" href="https://avatars.githubusercontent.com/cilions" />
       <body>{children}</body>
     </html>
   )

@@ -2,43 +2,52 @@
 
 import Link from 'next/link'
 import { useChat } from 'ai/react'
-import styles from './page.module.css'
-import packageJson from '../package.json';
+import Script from 'next/script'
 
 export default function Chat() {
+  const { version } = require('@/package.json')
   const { messages, input, handleInputChange, handleSubmit } = useChat()
 
   return (
-    <div className={styles.container}>
+    <>
+      <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+        `}
+      </Script>
+
       {messages.length > 0
         ? messages.map(m => (
-            <div className={styles.chat} key={m.id}>
+            <pre key={m.id}>
               {m.role === 'user' ? 'You: ' : 'clgpt-ai: '}
               {m.content}
-            </div>
+            </pre>
           ))
         : null}
 
       <form onSubmit={handleSubmit}>
         <input
-          className={styles.input}
           value={input}
-          placeholder="Temporarily unavailable"
+          placeholder="Message clgpt..."
           onChange={handleInputChange}
-          disabled
         />
       </form>
       <div style={{ marginTop: '1rem' }}>
-        <p className={styles.info}>
+        <pre style={{ margin: '0rem' }}>
           <Link href="https://platform.openai.com">OpenAi API</Link> - gpt-3.5-turbo
-        </p>
-        <p className={styles.info}>
-          contact: <Link href="mailto:cilions@pm.me">cilions@pm.me</Link> - <Link href="https://cilions.icu">@cilions</Link>
-        </p>
-        <p className={styles.info}>
-          v{packageJson.version}
-        </p>
+        </pre>
+        <pre style={{ margin: '0rem' }}>
+          v{version} - <Link href="https://cilions.icu">@cilions</Link> ❤︎‬
+        </pre>
       </div>
-    </div>
+    </>
   )
 }
