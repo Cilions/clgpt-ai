@@ -25,4 +25,5 @@ input {
   width: 100%;
   font-size: 0.875rem;
   padding: 0;
+  outline: none;
 }

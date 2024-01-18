@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useChat } from 'ai/react'
-import Script from 'next/script'
 
 export default function Chat() {
   const { version } = require('@/package.json')
@@ -10,20 +9,6 @@ export default function Chat() {
 
   return (
     <>
-      <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-          strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
-        `}
-      </Script>
-
       {messages.length > 0
         ? messages.map(m => (
             <pre key={m.id}>
