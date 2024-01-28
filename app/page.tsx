@@ -30,7 +30,7 @@ export default function Chat() {
           <Link href="https://platform.openai.com">OpenAi API</Link> - gpt-3.5-turbo
         </pre>
         <pre style={{ margin: '0rem' }}>
-          v{version} - <Link href="https://cilions.icu">@cilions</Link> ❤︎‬
+          v{version} - <Link href="https://cilions.co">@cilions</Link> ❤︎‬
         </pre>
       </div>
     </>

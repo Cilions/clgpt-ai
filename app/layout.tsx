@@ -3,7 +3,7 @@ import './globals.css'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'clgpt-ai',
+  title: 'ai.cilions.co',
   description: 'clgpt-ai - @cilions',
 }
 
