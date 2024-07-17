@@ -4,15 +4,22 @@ import Link from "next/link"
 import { useChat } from "ai/react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { version } from "@/package.json";
 
 export default function Chat() {
-  const { version } = require("@/package.json")
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (!session) {
-    router.push("/");
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
   }
 
   return (
