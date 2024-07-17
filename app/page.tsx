@@ -1,38 +1,25 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { useChat } from 'ai/react'
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { SignIn } from "@/components/sign-in";
 
-export default function Chat() {
-  const { version } = require('@/package.json')
-  const { messages, input, handleInputChange, handleSubmit } = useChat()
+export default function AuthButton() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (session) {
+    router.push("/chat");
+  }
+  
   return (
-    <>
-      {messages.length > 0
-        ? messages.map(m => (
-            <pre key={m.id}>
-              {m.role === 'user' ? 'You: ' : 'clgpt-ai: '}
-              {m.content}
-            </pre>
-          ))
-        : null}
-
-      <form onSubmit={handleSubmit}>
-        <input
-          value={input}
-          placeholder="Message clgpt..."
-          onChange={handleInputChange}
-        />
-      </form>
-      <div style={{ marginTop: '1rem' }}>
-        <pre style={{ margin: '0rem' }}>
-          <Link href="https://platform.openai.com">OpenAi API</Link> - gpt-3.5-turbo
-        </pre>
-        <pre style={{ margin: '0rem' }}>
-          v{version} - <Link href="https://cilions.co">@cilions</Link> ❤︎‬
-        </pre>
-      </div>
-    </>
-  )
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+      Not signed in <br />
+      <SignIn />
+    </div>
+  );
 }

@@ -1,10 +1,18 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Script from 'next/script'
+import { Providers } from "./provider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ai.cilions.co'),
   title: 'ai.cilions.co',
-  description: 'clgpt-ai - @cilions',
+  openGraph: {
+    title: 'ai.cilions.co',
+    url: 'https://ai.cilions.co',
+    siteName: 'ai.cilions.co',
+    locale: 'en_US',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -28,7 +36,11 @@ export default function RootLayout({
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
         `}
       </Script>
-      <body>{children}</body>
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   )
 }

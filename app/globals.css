@@ -1,21 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
 :root {
   color-scheme: light dark;
+  --link-color: #0000EE;
+  --font-jetbrains-mono: 'JetBrains Mono', monospace;
 }
 
-pre {
-  max-width: 100%;
-  overflow-x: auto;
-  white-space: pre-wrap;
+*, body {
+  font-size: small;
+  font-family: var(--font-jetbrains-mono);
 }
 
-body {
-  font-family: "Consolas";
-  padding: 0;
-  border: 0;
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
-p {
-  margin: 0;
+a {
+  color: var(--link-color);
 }
 
 input {
@@ -23,7 +25,13 @@ input {
   margin-top: 1rem;
   border: none;
   width: 100%;
-  font-size: 0.875rem;
   padding: 0;
   outline: none;
+}
+
+button {
+  color: var(--link-color);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
