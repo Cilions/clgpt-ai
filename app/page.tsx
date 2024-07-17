@@ -17,8 +17,14 @@ export default function AuthButton() {
   }
   
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-      Not signed in <br />
+    <div style={{ 
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      textAlign: "center"
+    }}>
+      <p style={{ marginBottom: "1rem" }}>Not signed in</p>
       <SignIn />
     </div>
   );
