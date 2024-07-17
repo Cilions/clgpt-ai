@@ -1,6 +1,6 @@
 {
   "name": "clgpt-ai",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,16 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.4.10",
-    "@types/react": "18.2.20",
-    "@types/react-dom": "18.2.7",
     "ai": "^2.1.33",
-    "eslint": "8.47.0",
-    "eslint-config-next": "13.4.13",
-    "next": "13.4.13",
+    "next": "14.0.4",
+    "next-auth": "^5.0.0-beta.19",
     "openai-edge": "^1.2.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "typescript": "^5"
   }
 }
