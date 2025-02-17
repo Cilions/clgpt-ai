@@ -1,23 +1,28 @@
-import { OpenAIStream, StreamingTextResponse } from 'ai'
-import { Configuration, OpenAIApi } from 'openai-edge'
-
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-})
-const openai = new OpenAIApi(config)
+import { generateText, streamText } from 'ai'
+import { anthropic } from '@ai-sdk/anthropic'
+import { openai } from '@ai-sdk/openai'
 
 export const runtime = 'edge'
 
 export async function POST(req: Request) {
-  const { messages } = await req.json()
+  const { messages, model }: { messages: Message[], model: string } = await req.json()
 
-  const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
-    stream: true,
-    messages
-  })
+  let response;
+  if (model.startsWith('gpt')) {
+    response = await generateText({
+      model: openai(model),
+      prompt: messages.map(message => message.content).join('\n')
+    })
+  } else if (model.startsWith('claude')) {
+    response = await generateText({
+      model: anthropic(model),
+      prompt: messages.map(message => message.content).join('\n')
+    })
+  } else {
+    return new Response('Unsupported model', { status: 400 })
+  }
 
-  const stream = OpenAIStream(response)
+  const stream = streamText({ ...response, model: model.startsWith('gpt') ? openai(model) : anthropic(model) })
 
-  return new StreamingTextResponse(stream)
+  return stream.toDataStreamResponse()
 }

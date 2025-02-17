@@ -5,18 +5,18 @@ import Script from 'next/script'
 import { Providers } from "./provider";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ai.cilions.co'),
-  title: 'ai.cilions.co',
+  metadataBase: new URL('https://aisw.vercel.app'),
+  title: 'AISW',
   openGraph: {
-    title: 'ai.cilions.co',
-    url: 'https://ai.cilions.co',
-    siteName: 'ai.cilions.co',
+    title: 'AISW',
+    url: 'https://aisw.vercel.app',
+    siteName: 'AISW',
     locale: 'en_US',
     type: 'website',
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode

@@ -1,19 +1,17 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { auth } from './auth'
+import { auth } from "@/auth"
 
-export async function middleware(request: NextRequest) {
-    const session = await auth()
+export default auth((req) => {
+  if (!req.auth && req.nextUrl.pathname !== "/login") {
+    const newUrl = new URL("/login", req.nextUrl.origin)
+    return Response.redirect(newUrl)
+  }
 
-    if (!session && request.nextUrl.pathname.startsWith('/chat')) {
-        return NextResponse.redirect(new URL('/', request.url))
-    }
-    if (session && request.nextUrl.pathname === '/') {
-        return NextResponse.redirect(new URL('/chat', request.url))
-    }
-    return NextResponse.next()
-}
+  if (req.auth && req.nextUrl.pathname === "/login") {
+    const newUrl = new URL("/", req.nextUrl.origin)
+    return Response.redirect(newUrl)
+  }
+})
 
 export const config = {
-  matcher: ['/', '/chat'],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 }
